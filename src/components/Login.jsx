@@ -1,14 +1,20 @@
-import React from 'react'
+
+import React, { useState } from 'react'
 import "./login.css"
 import { AiOutlineTwitter, AiFillApple } from 'react-icons/ai'
-import { FcGoogle } from 'react-icons/fc'
-
+import { FcGoogle } from 'react-icons/fc';
+import Modal from './Modal';
 const Login = () => {
-
+    const [showModal, setShowModal] = useState(false)
+    const handleCloseModal = () => {
+        setShowModal(false)
+    }
+    const handleOpenModal = () => {
+        setShowModal(true)
+    }
     return (
         <div className="container">
             <div className="login-pa">
-
                 <div className="left-hero">
                     {/* <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80" alt="tweets" /> */}
                 </div>
@@ -29,7 +35,7 @@ const Login = () => {
                     <div className="or">
                         <p>or</p>
                     </div>
-                    <button className="phone-signup">
+                    <button className="phone-signup" onClick={handleOpenModal}>
                         <h6>Sign up with phone or email</h6>
                     </button>
                     <p className="sub-text">By signing up, you agree to the <a href="www.www.com">Terms of Service</a> and <a href="www.www.com">Privacy Policy</a>, including <a href="www.www.com">Cookie Use.</a></p>
@@ -63,9 +69,8 @@ const Login = () => {
             <div className="copyright">
                 <p>&copy; Omolade, 2022</p>
             </div>
-
+            {showModal && <Modal handleCloseModal={handleCloseModal} />}
         </div>
     )
 }
-
 export default Login
